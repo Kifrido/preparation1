@@ -7,7 +7,7 @@ router.use(express.json());
 
 router.get("/", function(req, res) {
   let url = "https://blog.risingstack.com/";
-  request(url, function(error, response, html) {
+  const getLinks = request(url, function(error, response, html) {
     if (!error) {
       $ = cheerio.load(html);
       let links = $(".post-title a");
@@ -15,10 +15,12 @@ router.get("/", function(req, res) {
         let href = $(link).attr("href");
         console.log($(link).text() + ": " + url + href);
       });
+      //res.send({"message":"hi"});
     } else {
       console.log(error);
     }
   });
+  res.send({"message":"hi"});
 });
 
 module.exports = router;
