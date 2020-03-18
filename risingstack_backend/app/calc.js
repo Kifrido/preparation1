@@ -14,7 +14,6 @@ async function parsePage(page) {
   try {
     for (let i = 1; i <= page; i++) {
       base = `https://blog.risingstack.com/page/${i}`;
-      console.log(base);
       let mainHtml = await request(base);
       $ = cheerio.load(mainHtml);
 
@@ -53,7 +52,6 @@ async function parsePage(page) {
       );
       data.push(...temp);
     }
-    console.log(data);
     return data;
   } catch (error) {
     console.log("error: " + error);
